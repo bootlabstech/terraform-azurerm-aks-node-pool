@@ -12,7 +12,10 @@ resource "azurerm_kubernetes_cluster_node_pool" "node_pool" {
   max_pods              = var.secondary_max_pods
   os_sku                = var.os_sku
   vnet_subnet_id        = var.subnet_id
-  
+  priority              = var.priority
+  eviction_policy       = var.priority == "Spot" ? "Delete" : null
+  node_labels = var.node_labels
+  node_taints = var.node_taints
   lifecycle {
     ignore_changes = [
       tags,
