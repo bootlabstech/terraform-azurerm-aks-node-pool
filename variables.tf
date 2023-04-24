@@ -23,6 +23,10 @@ variable "os_disk_size_gb" {
   type        = number
 }
 
+variable "vnet_subnet_id" {
+  type        = string
+  description = "A list of Availability Zones across which the Node Pool should be spread."
+}
 variable "zones" {
   type        = list(string)
   description = "A list of Availability Zones across which the Node Pool should be spread."
