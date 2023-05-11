@@ -59,7 +59,7 @@ variable "secondary_max_count" {
 }
  variable "priority" {
    description = "The Priority for Virtual Machines within the Virtual Machine Scale Set that powers this Node Pool. Possible values are Regular and Spot. Defaults to Regular. Changing this forces a new resource to be created."
-   default = "Regular"
+  #  default = "Regular"
    type = string
  }
 variable "node_taints" {
@@ -71,4 +71,8 @@ variable "node_labels" {
   description = "A map of Kubernetes labels which should be applied to nodes in this Node Pool."
   type = map
   default = {}
+}
+variable "eviction_policy" {
+  description = "A map of Kubernetes labels which should be applied to nodes in this Node Pool."
+  type = string
 }
