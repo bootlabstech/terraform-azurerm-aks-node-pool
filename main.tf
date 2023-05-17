@@ -14,8 +14,8 @@ resource "azurerm_kubernetes_cluster_node_pool" "node_pool" {
   vnet_subnet_id        = var.subnet_id
   priority              = var.priority
   eviction_policy       = var.eviction_policy
-  node_labels = var.node_labels
-  node_taints = var.node_taints
+  # node_labels = var.node_labels
+  # node_taints = var.node_taints
   lifecycle {
     ignore_changes = [
       tags,

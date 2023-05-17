@@ -62,16 +62,16 @@ variable "secondary_max_count" {
   #  default = "Regular"
    type = string
  }
-variable "node_taints" {
-  description = "A list of Kubernetes taints which should be applied to nodes in the agent pool (e.g key=value:NoSchedule). Changing this forces a new resource to be created"
-  default = []
-  type = list
-}
-variable "node_labels" {
-  description = "A map of Kubernetes labels which should be applied to nodes in this Node Pool."
-  type = map
-  default = {}
-}
+# variable "node_taints" {
+#   description = "A list of Kubernetes taints which should be applied to nodes in the agent pool (e.g key=value:NoSchedule). Changing this forces a new resource to be created"
+#   default = []
+#   type = list
+# }
+# variable "node_labels" {
+#   description = "A map of Kubernetes labels which should be applied to nodes in this Node Pool."
+#   type = map
+#   default = {}
+# }
 variable "eviction_policy" {
   description = "A map of Kubernetes labels which should be applied to nodes in this Node Pool."
   type = string
