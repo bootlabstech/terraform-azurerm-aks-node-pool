@@ -22,3 +22,4 @@ resource "azurerm_kubernetes_cluster_node_pool" "node_pool" {
     ]
   }
 }
+
