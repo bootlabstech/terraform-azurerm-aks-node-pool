@@ -1,64 +1,78 @@
 variable "name" {
-  description = "The name of the Node Pool which should be created within the Kubernetes Cluster. "
+  description = "The name of the node pool for the AKS cluster"
   type        = string
 }
+
 variable "kubernetes_cluster_id" {
     type = string
-    description = "The ID of the Kubernetes Cluster where this Node Pool should exist. r"
+    description = "The id of aks cluster"
 }
+
 variable "vm_size" {
   type        = string
-  description = "The SKU which should be used for the Virtual Machines used in this Node Pool."
+  description = "VM Size of node pool."
 }
-variable "enable_auto_scaling" {
-  type        = bool
-  description = "Whether to enable auto-scaler."
+
+variable "subnet_id" {
+  description = "The ID of a Subnet"
+  type        = string
 }
+
 variable "os_disk_size_gb" {
-  description = "The Agent Operating System disk size in GB. Changing this forces a new resource to be created."
+  description = "Disk size of nodes in GBs."
   type        = number
+}
+
+variable "vnet_subnet_id" {
+  type        = string
+  description = "A list of Availability Zones across which the Node Pool should be spread."
 }
 variable "zones" {
   type        = list(string)
-  description = " Specifies a list of Availability Zones in which this Kubernetes Cluster Node Pool should be located. Changing this forces a new Kubernetes Cluster Node Pool to be created."
+  description = "A list of Availability Zones across which the Node Pool should be spread."
 }
-variable "secondary_node_count" {
-  type        = number
-  description = "The initial number of nodes which should exist within this Node Pool. Valid values are between 0 and 1000 (inclusive) for user pools and between 1 and 1000 (inclusive) for system pools and must be a value in the range min_count - max_count."
-}
-variable "secondary_min_count" {
-  type        = number
-  description = "The minimum number of nodes which should exist within this Node Pool. Valid values are between 0 and 1000 and must be less than or equal to max_count."
-}
-variable "secondary_max_count" {
-  type        = number
-  description = "The maximum number of nodes which should exist within this Node Pool. Valid values are between 0 and 1000 and must be greater than or equal to min_count."
-}
+
 variable "secondary_max_pods" {
   type        = number
-  description = "The maximum number of pods that can run on each agent. Changing this forces a new resource to be created."
+  description = "Maximum number of pods in a nodes"
   default     = 30
 }
 variable "os_sku" {
   type        = string
-  description = "Specifies the OS SKU used by the agent pool. Possible values include: AzureLinux, Ubuntu, Windows2019, Windows2022. If not specified, the default is Ubuntu if OSType=Linux or Windows2019 if OSType=Windows. And the default Windows OSSKU will be changed to Windows2022 after Windows2019 is deprecated. Changing this forces a new resource to be created."
+  description = "disk type in a nodes"
+  default     = "Ubuntu"
+}
 
+variable "secondary_node_count" {
+  type        = number
+  description = "The number of node to be run in node pool"
 }
-variable "vnet_subnet_id" {
-  description = "The ID of the Subnet where this Node Pool should exist."
-  type        = string
+
+variable "secondary_min_count" {
+  type        = number
+  description = "Minimum number of nodes in a pool"
 }
-variable "priority" {
-   description = "The Priority for Virtual Machines within the Virtual Machine Scale Set that powers this Node Pool. Possible values are Regular and Spot. Defaults to Regular."
+
+variable "secondary_max_count" {
+  type        = number
+  description = "Maximum number of nodes in a pool"
+}
+ variable "priority" {
+   description = "The Priority for Virtual Machines within the Virtual Machine Scale Set that powers this Node Pool. Possible values are Regular and Spot. Defaults to Regular. Changing this forces a new resource to be created."
+  #  default = "Regular"
    type = string
-
-}
+ }
 variable "node_taints" {
-  description = "A list of Kubernetes taints which should be applied to nodes in the agent pool (e.g key=value:NoSchedule). Changing this forces a new resource to be created."
+  description = "A list of Kubernetes taints which should be applied to nodes in the agent pool (e.g key=value:NoSchedule). Changing this forces a new resource to be created"
   default = []
   type = list
 }
 variable "node_labels" {
-  description = " A map of Kubernetes labels which should be applied to nodes in this Node Pool."
+  description = "A map of Kubernetes labels which should be applied to nodes in this Node Pool."
+  type = map
   default = {}
 }
+# variable "eviction_policy" {
+#   description = "A map of Kubernetes labels which should be applied to nodes in this Node Pool."
+#   type = string
+# }
