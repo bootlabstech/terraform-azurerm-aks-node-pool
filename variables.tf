@@ -44,6 +44,10 @@ variable "os_sku" {
   description = "Specifies the OS SKU used by the agent pool. Possible values include: AzureLinux, Ubuntu, Windows2019, Windows2022. If not specified, the default is Ubuntu if OSType=Linux or Windows2019 if OSType=Windows. And the default Windows OSSKU will be changed to Windows2022 after Windows2019 is deprecated. Changing this forces a new resource to be created."
 
 }
+variable "eviction_policy" {
+  type        = string
+  
+}
 variable "vnet_subnet_id" {
   description = "The ID of the Subnet where this Node Pool should exist."
   type        = string
